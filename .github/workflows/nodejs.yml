@@ -1,0 +1,32 @@
+# .github/workflows/nodejs.yml
+name: Node.js CI
+
+# This tells GitHub when to run this workflow
+on:
+  push:        # On every push
+    branches: [master]
+  pull_request: # On every PR
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+
+    strategy:
+      matrix:
+        node-version: [18.x]  # Run on Node 18 (you can add 16.x, 20.x, etc.)
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js ${{ matrix.node-ve
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
