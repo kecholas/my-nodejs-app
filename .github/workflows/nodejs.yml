@@ -4,9 +4,10 @@ name: Node.js CI
 on:
 push:        # On every push
     branches: 
-    - master
+    - main
   pull_request: # On every PR
-    branches: [master]
+    branches: 
+    - main
 
 jobs:
   build:
